@@ -1,6 +1,7 @@
-export type ChampionData = [string, Champion][];
+export type ChampionData = Champion[];
 
 export type Champion = {
+  id: string;
   key: string;
   name: string;
   title: string;
@@ -18,5 +19,4 @@ export type ChampionDetail = {
   blurb: string;
   allytips: tips;
   enemytips: tips;
-  // info: { attack: 3, defense: 4, magic: 8, difficulty: 5 },
 };

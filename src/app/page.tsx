@@ -26,7 +26,7 @@ export default function Home() {
         챔피언 목록 보기.
       </Link>
       <Link
-        href={"/champions"}
+        href={"/rotation"}
         className="flex flex-col justify-center items-center gap-5 text-black p-5"
       >
         <Image

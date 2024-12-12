@@ -8,7 +8,7 @@ export const fetchChampionData = async (): Promise<ChampionData> => {
       { next: { revalidate: 86400 } }
     );
     const { data } = await res.json();
-    const ChampionData: ChampionData = Object.entries(data);
+    const ChampionData: ChampionData = Object.values(data);
     return ChampionData;
   } catch (error) {
     console.log(error);
@@ -45,3 +45,4 @@ export const fetchItemData = async (): Promise<ItemData> => {
     throw error;
   }
 };
+
