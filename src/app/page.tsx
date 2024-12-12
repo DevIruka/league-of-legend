@@ -38,7 +38,7 @@ export default function Home() {
         금주 로테이션 확인.
       </Link>
       <Link
-        href={"/champions"}
+        href={"/items"}
         className="flex flex-col justify-center items-center gap-5 text-black p-5"
       >
         <Image
