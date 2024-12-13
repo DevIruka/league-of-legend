@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import Providers from "@/components/providers/RQProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +25,7 @@ export default function RootLayout({
           <Link href={"/items"}>아이템 목록</Link>
           <Link href={"/rotation"}>챔피언 로테이션</Link>
         </header>
-        {children}
+        <Providers>{children}</Providers>
         <footer className="bg-gray-800 p-4 mt-8 fixed bottom-0 w-full text-sky-50">
           This project is not endorsed by Riot Games and does not reflect the
           views or opinions of Riot Games or anyone officially involved in

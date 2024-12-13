@@ -1,14 +1,28 @@
 import { ChampionData, ChampionDetail } from "@/types/Champion";
-import { Item, ItemData } from "@/types/Items";
+import { Item, ItemData, ItemKeyandValue } from "@/types/Items";
 
-export const fetchChampionData = async (): Promise<ChampionData> => {
+const getLatestVersion = async (): Promise<string[]> => {
   try {
     const res = await fetch(
-      "https://ddragon.leagueoflegends.com/cdn/14.24.1/data/ko_KR/champion.json",
+      "https://ddragon.leagueoflegends.com/api/versions.json"
+    );
+    const data = res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const fetchChampionData = async (): Promise<ChampionData> => {
+  const versionData = await getLatestVersion();
+  try {
+    const res = await fetch(
+      `https://ddragon.leagueoflegends.com/cdn/${versionData[0]}/data/ko_KR/champion.json`,
       { next: { revalidate: 86400 } }
     );
     const { data } = await res.json();
-    const ChampionData: ChampionData = Object.entries(data);
+    const ChampionData: ChampionData = Object.values(data);
     return ChampionData;
   } catch (error) {
     console.log(error);
@@ -19,9 +33,10 @@ export const fetchChampionData = async (): Promise<ChampionData> => {
 export const fetchChampionDetailData = async (
   param: string
 ): Promise<ChampionDetail> => {
+  const versionData = await getLatestVersion();
   try {
     const res = await fetch(
-      `https://ddragon.leagueoflegends.com/cdn/14.24.1/data/ko_KR/champion/${param}.json`
+      `https://ddragon.leagueoflegends.com/cdn/${versionData[0]}/data/ko_KR/champion/${param}.json`
     );
     const { data } = await res.json();
     const ChampionDetail: ChampionDetail = data[param];
@@ -32,14 +47,18 @@ export const fetchChampionDetailData = async (
   }
 };
 
-export const fetchItemData = async (): Promise<ItemData> => {
+export const fetchItemData = async (): Promise<{
+  ItemData: ItemData;
+  data: ItemKeyandValue;
+}> => {
+  const versionData = await getLatestVersion();
   try {
     const res = await fetch(
-      "https://ddragon.leagueoflegends.com/cdn/14.24.1/data/ko_KR/item.json"
+      `https://ddragon.leagueoflegends.com/cdn/${versionData[0]}/data/ko_KR/item.json`
     );
     const { data } = await res.json();
     const ItemData: ItemData = Object.entries(data);
-    return ItemData;
+    return { ItemData, data };
   } catch (error) {
     console.log(error);
     throw error;
