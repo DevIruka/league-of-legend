@@ -31,13 +31,13 @@ const Rotation = () => {
 
   if (isError) {
     return (
-      <div className="pb-24">
+      <div className="flex flex-col items-center pb-24">
         <p className="text-center pt-16 mt-2 text-xl font-semibold">
           데이터를 가져오는 과정에서 오류가 발생하였습니다.
         </p>
         <button
           onClick={() => refetch()}
-          className="border rounded p-4 hover:shadow-lg"
+          className="mt-5 border rounded p-4 hover:shadow-lg"
         >
           다시 시도하기.
         </button>
