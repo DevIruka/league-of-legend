@@ -26,7 +26,7 @@ export default function RootLayout({
           <Link href={"/rotation"}>챔피언 로테이션</Link>
         </header>
         <Providers>{children}</Providers>
-        <footer className="bg-gray-800 p-4 mt-8 fixed bottom-0 w-full text-sky-50">
+        <footer className="bg-gray-800 p-4 mt-8 w-full text-sky-50">
           This project is not endorsed by Riot Games and does not reflect the
           views or opinions of Riot Games or anyone officially involved in
           producing or managing Riot Games properties. Riot Games and all
