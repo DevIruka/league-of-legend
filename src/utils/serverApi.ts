@@ -1,7 +1,7 @@
 import { ChampionData, ChampionDetail } from "@/types/Champion";
 import { Item, ItemData, ItemKeyandValue } from "@/types/Items";
 
-export const getLatestVersion = async (): Promise<string> => {
+export const getLatestVersion = async (): Promise<string[]> => {
   try {
     const res = await fetch(
       "https://ddragon.leagueoflegends.com/api/versions.json"
@@ -37,7 +37,8 @@ export const fetchChampionDetailData = async (
 ): Promise<ChampionDetail> => {
   try {
     const res = await fetch(
-      `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/champion/${param}.json`
+      `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/champion/${param}.json`,
+      { cache: "no-store" }
     );
     const { data } = await res.json();
     const ChampionDetail: ChampionDetail = data[param];
