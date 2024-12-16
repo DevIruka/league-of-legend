@@ -15,7 +15,7 @@ const ChampionCards = ({ data, versionData }: ChampionCardsProps) => {
   const filteredData = data.filter((champ) => champ.name.includes(input));
   return (
     <>
-      <div className="p-24">
+      <div className="pt-20 ps-10 pr-10">
         <input
           type="text"
           placeholder="챔피언 검색..."

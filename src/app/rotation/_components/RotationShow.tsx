@@ -14,8 +14,8 @@ const RotationShow = ({
   versionData,
 }: RotationShowProps) => {
   return (
-    <div className="pb-24">
-      <p className="text-center pt-16 mt-2 text-xl font-semibold">
+    <div>
+      <p className="text-center pt-16 pb-4 mt-2 text-xl font-semibold">
         로테이션 챔피언
       </p>
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
