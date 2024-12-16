@@ -18,7 +18,7 @@ const RotationShow = ({
       <p className="text-center pt-16 pb-4 mt-2 text-xl font-semibold">
         로테이션 챔피언
       </p>
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 ps-10 pr-10">
         {rotData?.freeChampionIds.map((id) => {
           return (
             <div

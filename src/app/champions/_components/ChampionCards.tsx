@@ -24,7 +24,7 @@ const ChampionCards = ({ data, versionData }: ChampionCardsProps) => {
           onChange={(e) => setInput(e.target.value)}
         />
       </div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 p-5">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 pt-5 ps-10 pr-10">
         {filteredData.map((champ, i) => {
           return (
             <Link
