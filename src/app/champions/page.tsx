@@ -1,9 +1,10 @@
-import { fetchChampionData } from "@/utils/serverApi";
+import { fetchChampionData, getLatestVersion } from "@/utils/serverApi";
 import Image from "next/image";
 import Link from "next/link";
 
 const Champions = async () => {
-  const data = await fetchChampionData();
+  const versionData = await getLatestVersion();
+  const data = await fetchChampionData(versionData[0]);
   return (
     <div className="grid grid-cols-4 gap-4 p-24">
       {data.map((champ, i) => {
@@ -14,7 +15,7 @@ const Champions = async () => {
             key={i}
           >
             <Image
-              src={`https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/${champ.id}.png`}
+              src={`https://ddragon.leagueoflegends.com/cdn/${versionData[0]}/img/champion/${champ.id}.png`}
               width={50}
               height={50}
               alt="챔피언 이미지"

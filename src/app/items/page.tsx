@@ -1,10 +1,11 @@
 import { cleanText } from "@/utils/cleanText";
-import { fetchItemData } from "@/utils/serverApi";
+import { fetchItemData, getLatestVersion } from "@/utils/serverApi";
 import Image from "next/image";
 import Link from "next/link";
 
 const Items = async () => {
-  const { ItemData } = await fetchItemData();
+  const versionData = await getLatestVersion();
+  const { ItemData } = await fetchItemData(versionData[0]);
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 p-24">
       {ItemData.map(([key, value]) => {
@@ -15,7 +16,7 @@ const Items = async () => {
             key={key}
           >
             <Image
-              src={`https://ddragon.leagueoflegends.com/cdn/14.24.1/img/item/${key}.png`}
+              src={`https://ddragon.leagueoflegends.com/cdn/${versionData[0]}/img/item/${key}.png`}
               width={100}
               height={100}
               alt={`${value.name}에 대한 이미지입니다.`}

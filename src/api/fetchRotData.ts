@@ -1,9 +1,6 @@
-import { Rotation } from "@/types/Rotation";
+import { rotData } from "@/types/Rotation";
 
-export const fetchRotData = async (): Promise<{
-  freeChampionIds: Rotation;
-  freeChampionIdsForNewPlayers: Rotation;
-}> => {
+export const fetchRotData = async (): Promise<rotData> => {
   const API_KEY = process.env.NEXT_PUBLIC_RIOT_API_KEY;
   try {
     const res = await fetch(

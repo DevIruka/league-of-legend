@@ -1,7 +1,7 @@
 import { ChampionData, ChampionDetail } from "@/types/Champion";
 import { Item, ItemData, ItemKeyandValue } from "@/types/Items";
 
-const getLatestVersion = async (): Promise<string[]> => {
+export const getLatestVersion = async (): Promise<string> => {
   try {
     const res = await fetch(
       "https://ddragon.leagueoflegends.com/api/versions.json"
@@ -14,11 +14,12 @@ const getLatestVersion = async (): Promise<string[]> => {
   }
 };
 
-export const fetchChampionData = async (): Promise<ChampionData> => {
-  const versionData = await getLatestVersion();
+export const fetchChampionData = async (
+  version: string
+): Promise<ChampionData> => {
   try {
     const res = await fetch(
-      `https://ddragon.leagueoflegends.com/cdn/${versionData[0]}/data/ko_KR/champion.json`,
+      `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/champion.json`,
       { next: { revalidate: 86400 } }
     );
     const { data } = await res.json();
@@ -31,12 +32,12 @@ export const fetchChampionData = async (): Promise<ChampionData> => {
 };
 
 export const fetchChampionDetailData = async (
-  param: string
+  param: string,
+  version: string
 ): Promise<ChampionDetail> => {
-  const versionData = await getLatestVersion();
   try {
     const res = await fetch(
-      `https://ddragon.leagueoflegends.com/cdn/${versionData[0]}/data/ko_KR/champion/${param}.json`
+      `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/champion/${param}.json`
     );
     const { data } = await res.json();
     const ChampionDetail: ChampionDetail = data[param];
@@ -47,14 +48,15 @@ export const fetchChampionDetailData = async (
   }
 };
 
-export const fetchItemData = async (): Promise<{
+export const fetchItemData = async (
+  version: string
+): Promise<{
   ItemData: ItemData;
   data: ItemKeyandValue;
 }> => {
-  const versionData = await getLatestVersion();
   try {
     const res = await fetch(
-      `https://ddragon.leagueoflegends.com/cdn/${versionData[0]}/data/ko_KR/item.json`
+      `https://ddragon.leagueoflegends.com/cdn/${version}/data/ko_KR/item.json`
     );
     const { data } = await res.json();
     const ItemData: ItemData = Object.entries(data);
