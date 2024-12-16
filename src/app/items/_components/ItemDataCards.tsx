@@ -9,7 +9,7 @@ type ItemDataCardsProps = {
 
 const ItemDataCards = ({ ItemData, versionData }: ItemDataCardsProps) => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 pt-24 ps-10 pr-10">
+    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 pt-24 ps-10 pr-10 pb-24">
       {ItemData.map(([key, value]) => {
         return (
           <Link
