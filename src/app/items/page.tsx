@@ -1,7 +1,4 @@
-import { cleanText } from "@/utils/cleanText";
 import { fetchItemData, getLatestVersion } from "@/utils/serverApi";
-import Image from "next/image";
-import Link from "next/link";
 import ItemDataCards from "./_components/ItemDataCards";
 
 const Items = async () => {
